@@ -1,0 +1,750 @@
+{
+  "slots": [
+    {
+      "id": "1000000000001",
+      "slotNo": "A1",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "1000000000002",
+      "slotNo": "A2",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": {
+        "id": "res-3",
+        "name": "Amit Verma",
+        "phone": "9888877777",
+        "vehicle": "DL-02-CD-5678"
+      },
+      "nearTowers": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "1000000000003",
+      "slotNo": "A3",
+      "isCovered": false,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A"
+      ]
+    },
+    {
+      "id": "1000000000004",
+      "slotNo": "A4",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A"
+      ]
+    },
+    {
+      "id": "1000000000005",
+      "slotNo": "A5",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A",
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000006",
+      "slotNo": "A6",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A",
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000007",
+      "slotNo": "A7",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000008",
+      "slotNo": "A8",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000009",
+      "slotNo": "A9",
+      "isCovered": false,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "G",
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000010",
+      "slotNo": "A10",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "G",
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000011",
+      "slotNo": "B1",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": true,
+      "occupiedBy": {
+        "id": "res-4",
+        "name": "Neha Singh",
+        "phone": "9777766666",
+        "vehicle": "DL-03-EF-9012"
+      },
+      "nearTowers": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "1000000000012",
+      "slotNo": "B2",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "1000000000013",
+      "slotNo": "B3",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": true,
+      "occupiedBy": {
+        "id": "res-5",
+        "name": "Rajesh Patel",
+        "phone": "9666655555",
+        "vehicle": "DL-04-GH-3456"
+      },
+      "nearTowers": [
+        "B"
+      ]
+    },
+    {
+      "id": "1000000000014",
+      "slotNo": "B4",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "B"
+      ]
+    },
+    {
+      "id": "1000000000015",
+      "slotNo": "B5",
+      "isCovered": false,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "1000000000016",
+      "slotNo": "B6",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "1000000000017",
+      "slotNo": "B7",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "1000000000018",
+      "slotNo": "B8",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "C"
+      ]
+    },
+    {
+      "id": "1000000000019",
+      "slotNo": "B9",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "C"
+      ]
+    },
+    {
+      "id": "1000000000020",
+      "slotNo": "B10",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "id": "1000000000021",
+      "slotNo": "C1",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": true,
+      "occupiedBy": {
+        "id": "res-2",
+        "name": "Priya Sharma",
+        "phone": "9111122222",
+        "vehicle": "DL-05-IJ-7890"
+      },
+      "nearTowers": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "id": "1000000000022",
+      "slotNo": "C2",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": true,
+      "occupiedBy": {
+        "id": "res-6",
+        "name": "Vikram Reddy",
+        "phone": "9555544444",
+        "vehicle": "DL-06-KL-2345"
+      },
+      "nearTowers": [
+        "C"
+      ]
+    },
+    {
+      "id": "1000000000023",
+      "slotNo": "C3",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "C"
+      ]
+    },
+    {
+      "id": "1000000000024",
+      "slotNo": "C4",
+      "isCovered": false,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "1000000000025",
+      "slotNo": "C5",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "id": "1000000000026",
+      "slotNo": "C6",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "D"
+      ]
+    },
+    {
+      "id": "1000000000027",
+      "slotNo": "C7",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "D"
+      ]
+    },
+    {
+      "id": "1000000000028",
+      "slotNo": "C8",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": "1000000000029",
+      "slotNo": "C9",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": "1000000000030",
+      "slotNo": "C10",
+      "isCovered": false,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "E"
+      ]
+    },
+    {
+      "id": "1000000000031",
+      "slotNo": "D1",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "E"
+      ]
+    },
+    {
+      "id": "1000000000032",
+      "slotNo": "D2",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "E",
+        "F"
+      ]
+    },
+    {
+      "id": "1000000000033",
+      "slotNo": "D3",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": true,
+      "occupiedBy": {
+        "id": "res-7",
+        "name": "Anjali Desai",
+        "phone": "9444433333",
+        "vehicle": "DL-07-MN-6789"
+      },
+      "nearTowers": [
+        "E",
+        "F"
+      ]
+    },
+    {
+      "id": "1000000000034",
+      "slotNo": "D4",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": true,
+      "occupiedBy": {
+        "id": "res-8",
+        "name": "Karan Mehta",
+        "phone": "9333322222",
+        "vehicle": "DL-08-OP-0123"
+      },
+      "nearTowers": [
+        "F"
+      ]
+    },
+    {
+      "id": "1000000000035",
+      "slotNo": "D5",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "F"
+      ]
+    },
+    {
+      "id": "1000000000036",
+      "slotNo": "D6",
+      "isCovered": false,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": "1000000000037",
+      "slotNo": "D7",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "E",
+        "F"
+      ]
+    },
+    {
+      "id": "1000000000038",
+      "slotNo": "D8",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "F"
+      ]
+    },
+    {
+      "id": "1000000000039",
+      "slotNo": "D9",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "F",
+        "G"
+      ]
+    },
+    {
+      "id": "1000000000040",
+      "slotNo": "D10",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "F",
+        "G"
+      ]
+    },
+    {
+      "id": "1000000000041",
+      "slotNo": "E1",
+      "isCovered": false,
+      "isEVCharging": true,
+      "isOccupied": true,
+      "occupiedBy": {
+        "id": "res-9",
+        "name": "Deepak Joshi",
+        "phone": "9222211111",
+        "vehicle": "DL-09-QR-4567"
+      },
+      "nearTowers": [
+        "G"
+      ]
+    },
+    {
+      "id": "1000000000042",
+      "slotNo": "E2",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "G"
+      ]
+    },
+    {
+      "id": "1000000000043",
+      "slotNo": "E3",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "F",
+        "G"
+      ]
+    },
+    {
+      "id": "1000000000044",
+      "slotNo": "E4",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "G",
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000045",
+      "slotNo": "E5",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "G",
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000046",
+      "slotNo": "E6",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000047",
+      "slotNo": "E7",
+      "isCovered": false,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000048",
+      "slotNo": "E8",
+      "isCovered": true,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A",
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000049",
+      "slotNo": "E9",
+      "isCovered": false,
+      "isEVCharging": false,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A",
+        "H"
+      ]
+    },
+    {
+      "id": "1000000000050",
+      "slotNo": "E10",
+      "isCovered": true,
+      "isEVCharging": true,
+      "isOccupied": false,
+      "occupiedBy": null,
+      "nearTowers": [
+        "A"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "admin-1",
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "name": "Admin",
+      "phone": null,
+      "tower": null
+    },
+    {
+      "id": "guard-1",
+      "username": "guard1",
+      "password": "guard123",
+      "role": "guard",
+      "name": "Ravi Kumar",
+      "phone": "9876543210",
+      "tower": null
+    },
+    {
+      "id": "res-1",
+      "username": "sarthak",
+      "password": "sarthak123",
+      "role": "resident",
+      "name": "Sarthak Chaudhary",
+      "phone": "9999988888",
+      "tower": "A"
+    },
+    {
+      "id": "res-2",
+      "username": "priya",
+      "password": "priya123",
+      "role": "resident",
+      "name": "Priya Sharma",
+      "phone": "9111122222",
+      "tower": "C"
+    },
+    {
+      "id": "res-3",
+      "username": "amit",
+      "password": "amit123",
+      "role": "resident",
+      "name": "Amit Verma",
+      "phone": "9888877777",
+      "tower": "A"
+    },
+    {
+      "id": "res-4",
+      "username": "neha",
+      "password": "neha123",
+      "role": "resident",
+      "name": "Neha Singh",
+      "phone": "9777766666",
+      "tower": "B"
+    },
+    {
+      "id": "res-5",
+      "username": "rajesh",
+      "password": "rajesh123",
+      "role": "resident",
+      "name": "Rajesh Patel",
+      "phone": "9666655555",
+      "tower": "B"
+    },
+    {
+      "id": "res-6",
+      "username": "vikram",
+      "password": "vikram123",
+      "role": "resident",
+      "name": "Vikram Reddy",
+      "phone": "9555544444",
+      "tower": "C"
+    },
+    {
+      "id": "res-7",
+      "username": "anjali",
+      "password": "anjali123",
+      "role": "resident",
+      "name": "Anjali Desai",
+      "phone": "9444433333",
+      "tower": "E"
+    },
+    {
+      "id": "res-8",
+      "username": "karan",
+      "password": "karan123",
+      "role": "resident",
+      "name": "Karan Mehta",
+      "phone": "9333322222",
+      "tower": "F"
+    },
+    {
+      "id": "res-9",
+      "username": "deepak",
+      "password": "deepak123",
+      "role": "resident",
+      "name": "Deepak Joshi",
+      "phone": "9222211111",
+      "tower": "G"
+    },
+    {
+      "id": "res-10",
+      "username": "sneha",
+      "password": "sneha123",
+      "role": "resident",
+      "name": "Sneha Kapoor",
+      "phone": "9111100000",
+      "tower": "H"
+    },
+    {
+      "id": "res-11",
+      "username": "rohit",
+      "password": "rohit123",
+      "role": "resident",
+      "name": "Rohit Malhotra",
+      "phone": "9000099999",
+      "tower": "D"
+    },
+    {
+      "id": "res-12",
+      "username": "pooja",
+      "password": "pooja123",
+      "role": "resident",
+      "name": "Pooja Agarwal",
+      "phone": "8999988888",
+      "tower": "E"
+    }
+  ]
+}

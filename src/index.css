@@ -1,0 +1,132 @@
+/* ─────────────────────────────────────────────────────────────────
+   myParking — Global Styles
+   Tailwind directives + custom utilities used across all components
+   ─────────────────────────────────────────────────────────────────  */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base resets & body defaults ─────────────────────────────────── */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #0a0a0f;   /* parking-bg */
+    color: #e2e8f0;              /* parking-text */
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar — thin cyan-tinted */
+  ::-webkit-scrollbar       { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #12121a; }
+  ::-webkit-scrollbar-thumb { background: #2a2a3d; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #6ee7f7; }
+
+  /* Select / option dark styling */
+  select option {
+    background-color: #1a1a26;
+    color: #e2e8f0;
+  }
+}
+
+/* ── Utility classes (used in JSX via className) ─────────────────── */
+@layer utilities {
+
+  /* Glow effects — used on CTA buttons and status indicators */
+  .glow-accent {
+    box-shadow:
+      0 0 20px rgba(110, 231, 247, 0.25),
+      0 0 60px rgba(110, 231, 247, 0.08);
+  }
+  .glow-green {
+    box-shadow:
+      0 0 20px rgba(74, 222, 128, 0.25),
+      0 0 60px rgba(74, 222, 128, 0.08);
+  }
+  .glow-red {
+    box-shadow: 0 0 20px rgba(248, 113, 113, 0.25);
+  }
+
+  /* Glass morphism — used on panel cards and header */
+  .glass {
+    background: rgba(26, 26, 38, 0.70);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  /* Subtle noise texture overlay on page background */
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  /* Cyan→purple gradient text — used in myParking logo */
+  .text-gradient {
+    background: linear-gradient(135deg, #6ee7f7 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Button active press effect — applied to interactive buttons */
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ── Grid background ─────────────────────────────────────────────── */
+/* Fine grid lines on the page background for a tech / blueprint feel */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(110, 231, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 231, 247, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Slot card ───────────────────────────────────────────────────── */
+/* Used in SlotGrid.jsx — smooth lift on hover */
+.slot-card {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.slot-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ── Staggered reveal delays ─────────────────────────────────────── */
+/* Used with animate-fade-up in Header.jsx StatCards */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.10s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.20s; }
+
+/* ── Toggle switch (used in AddSlotForm) ─────────────────────────── */
+/* Pure CSS toggle — no extra library needed */
+.toggle-input:checked + .toggle-label {
+  background-color: #6ee7f7;   /* parking-accent when ON */
+}
+.toggle-input:checked + .toggle-label::after {
+  transform: translateX(20px);
+}
+.toggle-label {
+  background-color: #2a2a3d;   /* parking-border when OFF */
+  transition: background-color 0.2s ease;
+}
+.toggle-label::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
