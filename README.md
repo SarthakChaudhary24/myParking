@@ -153,24 +153,6 @@ All data is stored in `db.json`:
 - Parking slots with features and occupancy
 - Tower assignments and proximity mappings
 
-## API Endpoints
-
-### Authentication
-- `POST /api/login` - User login
-
-### Users (Admin only)
-- `GET /api/users` - List all users
-- `GET /api/users/residents` - List residents only
-- `POST /api/users` - Create new user
-- `PUT /api/users/:id` - Update user
-- `DELETE /api/users/:id` - Delete user
-
-### Parking Slots
-- `GET /api/slots` - Get all slots
-- `POST /api/slots` - Create new slot
-- `PUT /api/slots/:id` - Update slot
-- `DELETE /api/slots/:id` - Delete slot
-
 ## Features in Detail
 
 ### Admin Dashboard
