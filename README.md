@@ -204,5 +204,5 @@ Built with ❤️ by Sarthak
 
 ---
 
-**Version**: 1.1.0  
+**Version**: 1.0 
 **Last Updated**: 19 April 2026
