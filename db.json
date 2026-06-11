@@ -6,7 +6,11 @@
       "isCovered": true,
       "isEVCharging": true,
       "isOccupied": false,
-      "occupiedBy": null,
+      "occupiedBy": {
+        "id": "SENSOR",
+        "name": "Anonymous (Sensor)",
+        "phone": null
+      },
       "nearTowers": [
         "A",
         "B"
@@ -19,10 +23,9 @@
       "isEVCharging": false,
       "isOccupied": false,
       "occupiedBy": {
-        "id": "res-3",
-        "name": "Amit Verma",
-        "phone": "9888877777",
-        "vehicle": "DL-02-CD-5678"
+        "id": "SENSOR",
+        "name": "Anonymous (Sensor)",
+        "phone": null
       },
       "nearTowers": [
         "A",
@@ -115,7 +118,11 @@
       "isCovered": true,
       "isEVCharging": false,
       "isOccupied": false,
-      "occupiedBy": null,
+      "occupiedBy": {
+        "id": "SENSOR",
+        "name": "Anonymous (Sensor)",
+        "phone": null
+      },
       "nearTowers": [
         "G",
         "H"
@@ -155,7 +162,7 @@
       "slotNo": "B3",
       "isCovered": false,
       "isEVCharging": false,
-      "isOccupied": true,
+      "isOccupied": false,
       "occupiedBy": {
         "id": "res-5",
         "name": "Rajesh Patel",

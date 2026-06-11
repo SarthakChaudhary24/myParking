@@ -1,11 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
-import { ParkVehicle, sortSlots, isSlotNumberTaken } from '../utils/parkingLogic'
+import { sortSlots, isSlotNumberTaken } from '../utils/parkingLogic'
 
 const API = `${import.meta.env.VITE_API_URL}/slots`
 
 export function useParking() {
   const [slots, setSlots] = useState([])
-  const [lastResult, setLastResult] = useState(null)
   const [activeTab, setActiveTab] = useState('slots')
 
   // Load slots from server on mount
@@ -45,25 +44,6 @@ export function useParking() {
     return { ok: true, message: `Slot ${trimmed} added successfully!` }
   }, [slots])
 
-  // Park a vehicle
-  const parkVehicle = useCallback(async (needsEV, needsCover) => {
-    const result = ParkVehicle(sortSlots(slots), needsEV, needsCover)
-
-    if (result.slot) {
-      await fetch(`${API}/${result.slot.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isOccupied: true }),
-      })
-      setSlots(prev => prev.map(s => s.id === result.slot.id ? { ...s, isOccupied: true } : s))
-      setLastResult({ type: 'success', message: result.message, slot: result.slot })
-    } else {
-      setLastResult({ type: 'error', message: result.message, slot: null })
-    }
-
-    return result
-  }, [slots])
-
   // Free a slot
   const removeVehicle = useCallback(async (slotId) => {
     const target = slots.find(s => s.id === slotId)
@@ -76,14 +56,12 @@ export function useParking() {
     })
 
     setSlots(prev => prev.map(s => s.id === slotId ? { ...s, isOccupied: false } : s))
-    setLastResult({ type: 'info', message: `Slot ${target.slotNo} is now free.`, slot: target })
   }, [slots])
 
   // Delete a slot
   const deleteSlot = useCallback(async (slotId) => {
     await fetch(`${API}/${slotId}`, { method: 'DELETE' })
     setSlots(prev => prev.filter(s => s.id !== slotId))
-    setLastResult(null)
   }, [])
 
   // Update slot features
@@ -95,24 +73,15 @@ export function useParking() {
     })
 
     setSlots(prev => prev.map(s => s.id === slotId ? { ...s, ...changes } : s))
-    const target = slots.find(s => s.id === slotId)
-    if (target) {
-      setLastResult({ type: 'info', message: `Slot ${target.slotNo} updated.`, slot: { ...target, ...changes } })
-    }
   }, [slots])
-
-  const clearResult = useCallback(() => setLastResult(null), [])
 
   return {
     slots: sortSlots(slots),
-    lastResult,
     activeTab,
     setActiveTab,
     addSlot,
-    parkVehicle,
     removeVehicle,
     deleteSlot,
     updateSlot,
-    clearResult,
   }
 }

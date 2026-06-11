@@ -80,7 +80,10 @@ function SlotCard({ slot, onRemove, onViewSlot, index }) {
         )}
         {slot.isOccupied && slot.occupiedBy && (
           <p className="text-xs font-mono text-parking-muted text-center">
-            {slot.occupiedBy.name}{slot.occupiedBy.phone ? ` · ${slot.occupiedBy.phone}` : ''}
+            {slot.occupiedBy.id === 'SENSOR'
+              ? <span className="text-parking-amber">📡 Anonymous (Sensor)</span>
+              : <>{slot.occupiedBy.name}{slot.occupiedBy.phone ? ` · ${slot.occupiedBy.phone}` : ''}</>
+            }
           </p>
         )}
       </div>

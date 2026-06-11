@@ -1,11 +1,18 @@
 # myParking 🅿️
 
-A smart parking management system for residential societies with tower-based proximity allocation.
+A smart IoT-integrated parking management system for residential societies with tower-based proximity allocation.
 
 ## Features
 
+### 📡 IoT Motion Sensor Simulation
+- CLI-based fake sensor (`sensor.js`) simulates physical motion detectors in parking slots
+- Sensor triggers mark a slot as **occupied anonymously** — no owner assigned
+- Guards can **appoint** the slot to a resident or guest after detection
+- Residents can **claim** a sensor-detected slot themselves (parked first, claim later)
+- Sensor slots are highlighted with an amber badge across all views
+
 ### 🏢 Multi-Tower Society Support
-- 8-tower layout (A-H) with intelligent proximity-based parking allocation
+- 8-tower layout (A–H) with intelligent proximity-based parking allocation
 - Distance calculation showing how far each slot is from your tower
 - Automatic slot prioritization based on resident's tower location
 
@@ -19,14 +26,15 @@ A smart parking management system for residential societies with tower-based pro
 
 **Guard**
 - Park vehicles and tag residents or guests
+- Appoint sensor-detected anonymous slots to a resident or guest
 - Free up occupied slots
 - View resident contact information
 - Cannot modify parking slot configurations
 
 **Resident**
-- Self-park vehicles with preference selection (EV/Covered)
-- View only their occupied slots
-- Free their own parking slots
+- Self-park vehicles with preference selection (EV / Covered)
+- **Claim sensor-detected slots** — if you parked first, register it under your name
+- View and free their own occupied slots
 - See distance from their tower to parking spots
 - Contact information privacy (can't see other residents' phone numbers)
 
@@ -34,7 +42,7 @@ A smart parking management system for residential societies with tower-based pro
 - **EV Charging**: Filter slots with EV charging stations
 - **Covered Parking**: Find covered/indoor spots
 - **Tower Proximity**: Automatically prioritizes slots near resident's tower
-- **Distance Display**: Shows approximate walking distance (20m - 200m+)
+- **Distance Display**: Shows approximate walking distance (20m – 200m+)
 
 ### 📊 Real-Time Dashboard
 - Live parking occupancy statistics
@@ -44,11 +52,11 @@ A smart parking management system for residential societies with tower-based pro
 
 ## Tech Stack
 
-- **Frontend**: React + Vite
-- **Styling**: Tailwind CSS
-- **Backend**: Express.js
-- **Database**: JSON file-based persistence
-- **State Management**: Custom hooks
+- **Frontend**: React 18 + Vite
+- **Styling**: Tailwind CSS (custom `parking-*` color palette)
+- **Backend**: Express.js (Node.js)
+- **Database**: JSON file-based persistence (`db.json`)
+- **State Management**: Custom React hook (`useParking`)
 
 ## Installation
 
@@ -64,12 +72,8 @@ npm install
 ```
 
 3. Create `.env` file in the root directory
-```bash
-# For local development
+```env
 VITE_API_URL=http://localhost:3001/api
-
-# For production deployment (Vercel/Netlify)
-# VITE_API_URL=https://your-backend-url.com/api
 ```
 
 4. Start the backend server
@@ -77,36 +81,65 @@ VITE_API_URL=http://localhost:3001/api
 npm run server
 ```
 
-5. Start the frontend (in a new terminal)
+5. Start the frontend (new terminal)
 ```bash
 npm run dev
 ```
 
-6. Open your browser at `http://localhost:5173`
+6. (Optional) Run the IoT sensor simulator (new terminal)
+```bash
+npm run sensor
+```
+
+7. Open your browser at `http://localhost:5173`
+
+## IoT Sensor — How to Use
+
+The sensor simulator is a Node.js CLI that mimics a physical motion detector mounted in each parking slot.
+
+```
+npm run sensor
+```
+
+**Available commands inside the CLI:**
+
+| Command | Description |
+|---------|-------------|
+| `list` | Show all slots — green = available, red = occupied |
+| `A1` | Trigger motion sensor on slot A1 (marks it occupied anonymously) |
+| `B3` | Trigger on slot B3 |
+| `exit` | Quit the simulator |
+
+**What happens after a sensor trigger:**
+1. Slot is marked `isOccupied: true` with `occupiedBy: { id: "SENSOR", name: "Anonymous (Sensor)" }`
+2. Guard sees an amber **"Sensor Detected"** banner in the Park/Free tab with an **Appoint →** button
+3. Resident sees a sensor badge on the **My Parking** tab and can **Claim** the slot
+4. Either role can also free the slot normally if it was a false trigger
 
 ## Default Credentials
 
 ### Admin
-- Username: `admin`
-- Password: `admin123`
+- Username: `admin` / Password: `admin123`
 
 ### Guard
-- Username: `guard1`
-- Password: `guard123`
+- Username: `guard1` / Password: `guard123`
 
 ### Sample Residents
-- **Sarthak** (Tower A): `sarthak` / `sarthak123`
-- **Priya** (Tower C): `priya` / `priya123`
-- **Amit** (Tower A): `amit` / `amit123`
-- **Neha** (Tower B): `neha` / `neha123`
-- **Rajesh** (Tower B): `rajesh` / `rajesh123`
-- **Vikram** (Tower C): `vikram` / `vikram123`
-- **Anjali** (Tower E): `anjali` / `anjali123`
-- **Karan** (Tower F): `karan` / `karan123`
-- **Deepak** (Tower G): `deepak` / `deepak123`
-- **Sneha** (Tower H): `sneha` / `sneha123`
-- **Rohit** (Tower D): `rohit` / `rohit123`
-- **Pooja** (Tower E): `pooja` / `pooja123`
+
+| Name | Tower | Username | Password |
+|------|-------|----------|----------|
+| Sarthak | A | `sarthak` | `sarthak123` |
+| Priya | C | `priya` | `priya123` |
+| Amit | A | `amit` | `amit123` |
+| Neha | B | `neha` | `neha123` |
+| Rajesh | B | `rajesh` | `rajesh123` |
+| Vikram | C | `vikram` | `vikram123` |
+| Anjali | E | `anjali` | `anjali123` |
+| Karan | F | `karan` | `karan123` |
+| Deepak | G | `deepak` | `deepak123` |
+| Sneha | H | `sneha` | `sneha123` |
+| Rohit | D | `rohit` | `rohit123` |
+| Pooja | E | `pooja` | `pooja123` |
 
 ## Project Structure
 
@@ -114,89 +147,96 @@ npm run dev
 myParking/
 ├── src/
 │   ├── components/
-│   │   ├── AdminApp.jsx          # Admin dashboard
-│   │   ├── GuardApp.jsx          # Guard interface
-│   │   ├── ResidentApp.jsx       # Resident interface
-│   │   ├── RoleLoginPage.jsx     # Login page
-│   │   ├── Header.jsx            # Common header
-│   │   ├── SlotGrid.jsx          # Parking slot grid
-│   │   ├── GuardParkPanel.jsx    # Guard parking panel
-│   │   ├── ResidentSelfParkPanel.jsx  # Resident self-parking
-│   │   ├── ResidentParkPanel.jsx # Resident's occupied slots
-│   │   └── ...
+│   │   ├── AdminApp.jsx              # Admin dashboard (users + slots)
+│   │   ├── GuardApp.jsx              # Guard interface
+│   │   ├── ResidentApp.jsx           # Resident interface
+│   │   ├── RoleLoginPage.jsx         # Role selector + login
+│   │   ├── Header.jsx                # Stats bar + logout
+│   │   ├── SlotGrid.jsx              # Filterable slot grid
+│   │   ├── SlotDetailModal.jsx       # Slot detail + edit modal
+│   │   ├── GuardParkPanel.jsx        # Park/free + sensor appoint
+│   │   ├── GuardTabNav.jsx           # Guard tab navigation
+│   │   ├── ResidentSelfParkPanel.jsx # Resident self-parking
+│   │   ├── ResidentParkPanel.jsx     # My Parking + sensor claim
+│   │   ├── ResidentTabNav.jsx        # Resident tab nav (sensor badge)
+│   │   ├── ResidentSlotGrid.jsx      # Resident slot grid view
+│   │   ├── ResidentDataTable.jsx     # Friendly data table
+│   │   ├── DataModelTable.jsx        # Technical schema table
+│   │   ├── DataModelBadge.jsx        # Schema field badges
+│   │   └── AddSlotForm.jsx           # Add new slot form
 │   ├── hooks/
-│   │   └── useParking.js         # Parking state management
+│   │   └── useParking.js             # Slot state + CRUD operations
 │   ├── utils/
-│   │   └── parkingLogic.js       # Core parking algorithms
-│   ├── App.jsx                   # Main app component
-│   ├── main.jsx                  # Entry point
-│   └── index.css                 # Global styles
-├── server.js                     # Express backend
-├── db.json                       # Database file
-├── package.json
+│   │   └── parkingLogic.js           # ParkVehicle, distance calc, stats
+│   ├── App.jsx                       # Root — role-based routing
+│   ├── main.jsx                      # React entry point
+│   └── index.css                     # Tailwind base + custom utilities
+├── server.js                         # Express REST API (port 3001)
+├── sensor.js                         # IoT motion sensor CLI simulator
+├── db.json                           # File-based database
+├── .env                              # API URL config
+├── tailwind.config.js
+├── vite.config.js
 └── README.md
 ```
 
 ## How It Works
 
 ### Tower-Based Distance Calculation
-The system arranges towers in a circular layout: A → B → C → D → E → F → G → H → A
+Towers are arranged in a circular layout: A → B → C → D → E → F → G → H → A
 
-Distance categories:
-- **Same Tower** (~20m): Slot is adjacent to your tower
-- **Very Near** (~50m): 1 tower away
-- **Near** (~100m): 2 towers away
-- **Moderate** (~150m): 3 towers away
-- **Far** (~200m+): 4+ towers away
+| Category | Distance | Steps |
+|----------|----------|-------|
+| Same Tower | ~20m | 0 |
+| Very Near | ~50m | 1 |
+| Near | ~100m | 2 |
+| Moderate | ~150m | 3 |
+| Far | ~200m+ | 4+ |
 
 ### Parking Allocation Logic
 1. Filter available (unoccupied) slots
 2. Apply user preferences (EV charging, covered)
-3. Prioritize slots near resident's tower
-4. Allocate the best matching slot
-5. Display distance information
+3. If a resident's tower is known, prioritize slots near that tower
+4. Allocate the best matching slot and display distance info
 
-### Data Persistence
-All data is stored in `db.json`:
-- User accounts (admin, guards, residents)
-- Parking slots with features and occupancy
-- Tower assignments and proximity mappings
+### Sensor Flow
+```
+sensor.js  →  POST /api/sensor  →  slot marked anonymous
+                                         ↓
+                              Guard appoints  OR  Resident claims
+                                         ↓
+                              occupiedBy updated to real person
+```
 
-## Features in Detail
+### API Endpoints
 
-### Admin Dashboard
-- Two-tab interface: Users and Slots
-- Create resident/guard accounts with tower assignment
-- Edit existing accounts (password optional on update)
-- Delete accounts
-- Full slot CRUD operations
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/login` | Authenticate user |
+| GET | `/api/users` | List all users (no passwords) |
+| GET | `/api/users/residents` | List residents only |
+| POST | `/api/users` | Create user |
+| PUT | `/api/users/:id` | Update user |
+| DELETE | `/api/users/:id` | Delete user |
+| GET | `/api/slots` | Get all slots |
+| POST | `/api/slots` | Create slot |
+| PUT | `/api/slots/:id` | Update slot |
+| DELETE | `/api/slots/:id` | Delete slot |
+| POST | `/api/sensor` | Sensor trigger — mark slot anonymous |
 
-### Guard Interface
-- Park vehicles with resident tagging or "Guest" option
-- View all parking slots with occupancy status
-- Free up any occupied slot
-- See resident contact information in slot details
-- Cannot modify slot configurations
+## npm Scripts
 
-### Resident Interface
-- **View Slots**: See all parking slots with availability
-- **My Parking**: View only their occupied slots with distance info
-- **Park Vehicle**: Self-park with EV/Covered preferences
-- **Data Table**: User-friendly parking data view
-- Privacy: Can't see other residents' phone numbers
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a pull request
+| Script | Command | Description |
+|--------|---------|-------------|
+| `npm run dev` | `vite` | Start frontend dev server |
+| `npm run server` | `node server.js` | Start Express backend |
+| `npm run sensor` | `node sensor.js` | Run IoT sensor CLI |
+| `npm run build` | `vite build` | Production build |
+| `npm run preview` | `vite preview` | Preview production build |
 
 ## License
 
-MIT License - feel free to use this project for personal or commercial purposes.
+MIT License — feel free to use this project for personal or educational purposes.
 
 ## Credits
 
@@ -204,5 +244,5 @@ Built with ❤️ by Sarthak
 
 ---
 
-**Version**: 1.0 
-**Last Updated**: 19 April 2026
+**Version**: 1.1
+**Last Updated**: June 2026

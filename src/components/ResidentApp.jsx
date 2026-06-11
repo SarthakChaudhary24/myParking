@@ -13,6 +13,9 @@ export default function ResidentApp({ user, onLogout }) {
   // Only slots occupied by this resident
   const mySlots = slots.filter(s => s.isOccupied && s.occupiedBy?.id === user.id)
 
+  // Sensor-detected anonymous slots (for badge count)
+  const sensorSlots = slots.filter(s => s.isOccupied && s.occupiedBy?.id === 'SENSOR')
+
   const freeMySlot = async (slotId) => {
     await fetch(`${import.meta.env.VITE_API_URL}/slots/${slotId}`, {
       method: 'PUT',
@@ -31,7 +34,7 @@ export default function ResidentApp({ user, onLogout }) {
 
       <div className="max-w-6xl mx-auto pb-12 relative z-10">
         <Header slots={slots} onLogout={onLogout} userName={user.name} userRole="Resident" />
-        <ResidentTabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+        <ResidentTabNav activeTab={activeTab} setActiveTab={setActiveTab} sensorCount={sensorSlots.length} />
 
         <div key={activeTab}>
           {activeTab === 'slots' && (
@@ -44,7 +47,7 @@ export default function ResidentApp({ user, onLogout }) {
             <ResidentSelfParkPanel user={user} slots={slots} />
           )}
           {activeTab === 'mypark' && (
-            <ResidentParkPanel mySlots={mySlots} onFree={freeMySlot} userTower={user.tower} />
+            <ResidentParkPanel mySlots={mySlots} onFree={freeMySlot} userTower={user.tower} user={user} slots={slots} />
           )}
         </div>
 

@@ -122,12 +122,24 @@ export default function SlotDetailModal({ slot, onClose, onUpdate, onRemove, onD
             <section>
               <p className="text-xs text-parking-muted font-mono uppercase tracking-widest mb-2">Occupied By</p>
               <div className="rounded-xl border border-parking-border bg-parking-surface p-4 space-y-1">
-                <p className="text-sm font-display font-bold text-parking-text">{slot.occupiedBy.name}</p>
-                {viewerRole === 'guard' && slot.occupiedBy.phone && (
-                  <p className="text-xs font-mono text-parking-accent">📞 {slot.occupiedBy.phone}</p>
-                )}
-                {viewerRole !== 'guard' && (
-                  <p className="text-xs font-mono text-parking-muted">Contact info hidden</p>
+                {slot.occupiedBy.id === 'SENSOR' ? (
+                  <>
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">📡</span>
+                      <p className="text-sm font-display font-bold text-parking-amber">Anonymous (Sensor)</p>
+                    </div>
+                    <p className="text-xs font-mono text-parking-muted">Motion sensor detected — no owner assigned</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-sm font-display font-bold text-parking-text">{slot.occupiedBy.name}</p>
+                    {viewerRole === 'guard' && slot.occupiedBy.phone && (
+                      <p className="text-xs font-mono text-parking-accent">📞 {slot.occupiedBy.phone}</p>
+                    )}
+                    {viewerRole !== 'guard' && (
+                      <p className="text-xs font-mono text-parking-muted">Contact info hidden</p>
+                    )}
+                  </>
                 )}
               </div>
             </section>

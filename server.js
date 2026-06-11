@@ -108,6 +108,32 @@ app.delete('/api/users/:id', (req, res) => {
   res.json({ ok: true })
 })
 
+// ── SENSOR ────────────────────────────────────────────────────────
+
+// POST /api/sensor — motion sensor trigger (marks slot occupied anonymously)
+// Body: { slotNo: "A1" }
+app.post('/api/sensor', (req, res) => {
+  const { slotNo } = req.body
+  if (!slotNo) return res.status(400).json({ error: 'slotNo is required.' })
+
+  const db = readDB()
+  const index = db.slots.findIndex(s => s.slotNo.toUpperCase() === slotNo.toUpperCase())
+  if (index === -1) return res.status(404).json({ error: `Slot "${slotNo}" not found.` })
+
+  const slot = db.slots[index]
+  if (slot.isOccupied) {
+    return res.status(409).json({ error: `Slot "${slotNo}" is already occupied.` })
+  }
+
+  db.slots[index] = {
+    ...slot,
+    isOccupied: true,
+    occupiedBy: { id: 'SENSOR', name: 'Anonymous (Sensor)', phone: null },
+  }
+  writeDB(db)
+  res.json({ ok: true, slot: db.slots[index] })
+})
+
 // ── SLOTS ─────────────────────────────────────────────────────────
 
 // GET /api/slots
