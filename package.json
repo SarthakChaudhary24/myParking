@@ -1,6 +1,6 @@
 {
   "name": "smart-parking",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "myParking — Intelligent Parking Lot Management System (Round 2 Assignment)",
   "type": "module",
   "scripts": {

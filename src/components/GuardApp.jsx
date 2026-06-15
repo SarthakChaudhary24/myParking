@@ -52,7 +52,7 @@ export default function GuardApp({ user, onLogout }) {
         </div>
 
         <footer className="text-center mt-10 px-6">
-          <p className="text-parking-muted text-xs font-mono">myParking v1.0 — Logged in as Guard</p>
+          <p className="text-parking-muted text-xs font-mono">myParking v1.2 — Logged in as Guard</p>
           <p className="text-parking-border text-xs font-mono mt-3">Built with ❤️ by Sarthak</p>
         </footer>
       </div>
