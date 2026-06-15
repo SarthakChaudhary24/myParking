@@ -11,6 +11,35 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+// ── SSE — Server-Sent Events ──────────────────────────────────────
+// Keeps a list of connected browser clients and broadcasts a
+// "slots-updated" event whenever any slot data changes.
+const sseClients = new Set()
+
+function broadcastSlotsUpdated() {
+  for (const res of sseClients) {
+    res.write('event: slots-updated\ndata: {}\n\n')
+  }
+}
+
+// GET /api/events — browser subscribes here for live updates
+app.get('/api/events', (req, res) => {
+  res.setHeader('Content-Type',  'text/event-stream')
+  res.setHeader('Cache-Control', 'no-cache')
+  res.setHeader('Connection',    'keep-alive')
+  res.flushHeaders()
+
+  // Send a heartbeat every 25s to keep the connection alive
+  const heartbeat = setInterval(() => res.write(': heartbeat\n\n'), 25000)
+
+  sseClients.add(res)
+
+  req.on('close', () => {
+    clearInterval(heartbeat)
+    sseClients.delete(res)
+  })
+})
+
 function readDB() {
   try { return JSON.parse(fs.readFileSync(DB_PATH, 'utf-8')) }
   catch { return { slots: [], users: [] } }
@@ -131,6 +160,7 @@ app.post('/api/sensor', (req, res) => {
     occupiedBy: { id: 'SENSOR', name: 'Anonymous (Sensor)', phone: null },
   }
   writeDB(db)
+  broadcastSlotsUpdated()
   res.json({ ok: true, slot: db.slots[index] })
 })
 
@@ -148,6 +178,7 @@ app.post('/api/slots', (req, res) => {
   const newSlot = req.body
   db.slots.push(newSlot)
   writeDB(db)
+  broadcastSlotsUpdated()
   res.json(newSlot)
 })
 
@@ -158,6 +189,7 @@ app.put('/api/slots/:id', (req, res) => {
   if (index === -1) return res.status(404).json({ error: 'Slot not found' })
   db.slots[index] = { ...db.slots[index], ...req.body }
   writeDB(db)
+  broadcastSlotsUpdated()
   res.json(db.slots[index])
 })
 
@@ -166,6 +198,7 @@ app.delete('/api/slots/:id', (req, res) => {
   const db = readDB()
   db.slots = db.slots.filter(s => s.id !== req.params.id)
   writeDB(db)
+  broadcastSlotsUpdated()
   res.json({ ok: true })
 })
 

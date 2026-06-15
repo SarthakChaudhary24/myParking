@@ -5,7 +5,7 @@
       "slotNo": "A1",
       "isCovered": true,
       "isEVCharging": true,
-      "isOccupied": false,
+      "isOccupied": true,
       "occupiedBy": {
         "id": "SENSOR",
         "name": "Anonymous (Sensor)",
@@ -37,8 +37,12 @@
       "slotNo": "A3",
       "isCovered": false,
       "isEVCharging": true,
-      "isOccupied": false,
-      "occupiedBy": null,
+      "isOccupied": true,
+      "occupiedBy": {
+        "id": "SENSOR",
+        "name": "Anonymous (Sensor)",
+        "phone": null
+      },
       "nearTowers": [
         "A"
       ]

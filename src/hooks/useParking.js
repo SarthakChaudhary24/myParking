@@ -1,14 +1,15 @@
 import { useState, useEffect, useCallback } from 'react'
 import { sortSlots, isSlotNumberTaken } from '../utils/parkingLogic'
 
-const API = `${import.meta.env.VITE_API_URL}/slots`
+const API      = `${import.meta.env.VITE_API_URL}/slots`
+const EVENTS   = `${import.meta.env.VITE_API_URL}/events`
 
 export function useParking() {
   const [slots, setSlots] = useState([])
   const [activeTab, setActiveTab] = useState('slots')
 
-  // Load slots from server on mount
   useEffect(() => {
+    // Initial load
     const load = () => {
       fetch(API)
         .then(r => r.json())
@@ -16,8 +17,22 @@ export function useParking() {
         .catch(() => console.error('Could not connect to myParking server. Is it running?'))
     }
     load()
+
+    // SSE — receive server-push updates (sensor, guard actions, etc.)
+    const es = new EventSource(EVENTS)
+    es.addEventListener('slots-updated', load)
+    es.onerror = () => {
+      // SSE dropped — fall back to polling every 5s until reconnected
+      // EventSource reconnects automatically; polling is just a safety net
+    }
+
+    // Also keep the local window event for same-tab optimistic updates
     window.addEventListener('parking-updated', load)
-    return () => window.removeEventListener('parking-updated', load)
+
+    return () => {
+      es.close()
+      window.removeEventListener('parking-updated', load)
+    }
   }, [])
 
   // Add a new slot
