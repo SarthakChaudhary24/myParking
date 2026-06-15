@@ -50,6 +50,10 @@ A smart IoT-integrated parking management system for residential societies with 
 - Feature-based filtering (EV, Covered)
 - Visual slot grid with status indicators
 
+### 🔄 Live Sync & Session
+- **Server-Sent Events (SSE)**: UI updates instantly across all open tabs when any slot changes — no refresh needed
+- **Session persistence**: Login survives a page refresh — `sessionStorage` restores your session automatically, clears when the tab is closed
+
 ## Tech Stack
 
 - **Frontend**: React 18 + Vite
@@ -202,11 +206,16 @@ Towers are arranged in a circular layout: A → B → C → D → E → F → G 
 ### Sensor Flow
 ```
 sensor.js  →  POST /api/sensor  →  slot marked anonymous
-                                         ↓
+                                         ↓                    (SSE broadcast)
                               Guard appoints  OR  Resident claims
                                          ↓
                               occupiedBy updated to real person
+                                         ↓                    (SSE broadcast)
+                              All open tabs update instantly
 ```
+
+### Session Persistence
+Login state is saved to `sessionStorage`. On page refresh, the app reads it back and skips the login screen. Closing the tab/browser clears the session naturally.
 
 ### API Endpoints
 
@@ -223,6 +232,7 @@ sensor.js  →  POST /api/sensor  →  slot marked anonymous
 | PUT | `/api/slots/:id` | Update slot |
 | DELETE | `/api/slots/:id` | Delete slot |
 | POST | `/api/sensor` | Sensor trigger — mark slot anonymous |
+| GET | `/api/events` | SSE stream — server-push slot updates |
 
 ## npm Scripts
 
@@ -244,5 +254,5 @@ Built with ❤️ by Sarthak
 
 ---
 
-**Version**: 1.1
+**Version**: 1.2
 **Last Updated**: June 2026
